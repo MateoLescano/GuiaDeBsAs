@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,7 +39,6 @@ class HomeFragment : Fragment() {
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
 
-
         setUpMap()
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
@@ -47,31 +47,29 @@ class HomeFragment : Fragment() {
         googleMap.uiSettings.isRotateGesturesEnabled = true
         googleMap.uiSettings.isCompassEnabled = true
 
-
-        googleMap.isMyLocationEnabled = true
-
-        fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) { location ->
-
-            if (location != null) {
-                lastLocation = location
-                val currentLatLng = LatLng(location.latitude, location.longitude)
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 14f))
-            }
-        }
-
-
         val loc1 = LatLng(-34.575801, -58.463913)
         val loc2 = LatLng( -34.5781574,  -58.4608209)
 
+        val checkPermisos = context?.checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION)
 
+        if(checkPermisos == PackageManager.PERMISSION_GRANTED){
+
+            googleMap.isMyLocationEnabled = true
+
+            fusedLocationClient.lastLocation.addOnSuccessListener(requireActivity()) { location ->
+
+                if (location != null) {
+                    lastLocation = location
+                    val currentLatLng = LatLng(location.latitude, location.longitude)
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 14f))
+                }
+            }
+        }else{
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc1, 15.0f))
+        }
 
         googleMap.addMarker(MarkerOptions().position(loc1).title("Casa"))
         googleMap.addMarker(MarkerOptions().position(loc2).title("Pizza"))
-
-
-//        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc1,15.0f))
-
-
 
     }
 
@@ -98,7 +96,5 @@ class HomeFragment : Fragment() {
             return
         }
     }
-
-
 
 }
