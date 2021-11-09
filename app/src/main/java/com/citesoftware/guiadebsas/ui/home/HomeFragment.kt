@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -47,8 +48,7 @@ class HomeFragment : Fragment() {
         googleMap.uiSettings.isRotateGesturesEnabled = true
         googleMap.uiSettings.isCompassEnabled = true
 
-        val loc1 = LatLng(-34.575801, -58.463913)
-        val loc2 = LatLng( -34.5781574,  -58.4608209)
+        val locDefault = LatLng(-34.608416, -58.372251)
 
         val checkPermisos = context?.checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION)
 
@@ -65,11 +65,25 @@ class HomeFragment : Fragment() {
                 }
             }
         }else{
-            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc1, 15.0f))
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locDefault, 13.0f))
         }
 
-        googleMap.addMarker(MarkerOptions().position(loc1).title("Casa"))
-        googleMap.addMarker(MarkerOptions().position(loc2).title("Pizza"))
+        //Marcadores de Locaciones
+        val casa = googleMap.addMarker(MarkerOptions().position(LatLng(-34.575801, -58.463913)).title("Casa"))
+        val laMezzeta = googleMap.addMarker(MarkerOptions().position(LatLng( -34.5781574,  -58.4608209)).title("Pizzería La Mezzetta"))
+
+
+        googleMap.setOnInfoWindowClickListener {
+            when (it) {
+                casa -> {
+                    Toast.makeText(context, "Mi casa", Toast.LENGTH_SHORT).show()
+                }
+                laMezzeta -> {
+                    Toast.makeText(context, "La mejor pizza", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
 
     }
 
@@ -96,5 +110,9 @@ class HomeFragment : Fragment() {
             return
         }
     }
+
+
+
+
 
 }
