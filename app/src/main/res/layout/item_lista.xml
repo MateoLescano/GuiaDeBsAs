@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/item_list"
     app:cardBackgroundColor="@color/fondoItems"
-    app:cardCornerRadius="5dp"
+    app:cardCornerRadius="15dp"
     app:contentPadding="5dp"
     app:cardElevation="2dp"
     >
@@ -22,10 +22,12 @@
             android:id="@+id/imgItem"
             android:layout_width="110dp"
             android:layout_height="110dp"
+            android:contentDescription="TODO"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            tools:srcCompat="@tools:sample/backgrounds/scenic"
+            />
 
         <TextView
             android:id="@+id/tvTitulo"
