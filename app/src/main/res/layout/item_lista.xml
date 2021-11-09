@@ -8,6 +8,7 @@
     app:cardBackgroundColor="@color/fondoItems"
     app:cardCornerRadius="15dp"
     app:contentPadding="5dp"
+    android:layout_margin="5dp"
     app:cardElevation="2dp"
     >
 
