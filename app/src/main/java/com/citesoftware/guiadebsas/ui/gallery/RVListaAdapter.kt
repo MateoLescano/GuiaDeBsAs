@@ -1,5 +1,6 @@
 package com.citesoftware.guiadebsas.ui.gallery
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.citesoftware.guiadebsas.R
 
-class RVListaAdapter(private var TitulosLoc: Array<String>, private var TipoLoc: Array<String>, private var DireccionLoc: Array<String>, private var ImgLoc: Array<Int>): RecyclerView.Adapter<RVListaAdapter.ViewHolder>() {
+class RVListaAdapter(val locaciones: List<DataModel>): RecyclerView.Adapter<RVListaAdapter.ViewHolder>() {
+
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
@@ -34,12 +36,19 @@ class RVListaAdapter(private var TitulosLoc: Array<String>, private var TipoLoc:
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.titulo.text = TitulosLoc[position]
-        holder.tipo.text = TipoLoc[position]
-        holder.direccion.text = DireccionLoc[position]
-        holder.itemImage.setImageResource(ImgLoc[position])
+        val data = locaciones[position]
+
+
+        holder.titulo.text = data.titulo
+        holder.tipo.text = data.tipo
+        holder.direccion.text = data.direccionLoc
+        holder.itemImage.setImageResource(data.imgLoc)
+
+//        when (TipoLoc[position]){
+//            "Trimarchi" -> holder.itemView.setBackgroundColor(0xFF3F51B5.toInt())
+//        }
 
     }
 
-    override fun getItemCount(): Int = TitulosLoc.size
+    override fun getItemCount(): Int = locaciones.size
 }

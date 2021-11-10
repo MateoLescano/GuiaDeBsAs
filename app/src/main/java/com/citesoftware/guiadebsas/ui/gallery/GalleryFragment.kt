@@ -18,10 +18,8 @@ class GalleryFragment : Fragment() {
     private lateinit var galleryViewModel: GalleryViewModel
     private var _binding: FragmentGalleryBinding? = null
 
-    var titulos = arrayOf("La Mezzetta", "Mi casa", "El clu")
-    var tipo = arrayOf("Resto", "Sitio Historico", "Trimarchi")
-    var direccion = arrayOf("Av. 123", "Av. 232332", "Calle 2323")
-    var img = arrayOf(R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground, R.drawable.ic_launcher_foreground)
+
+    var lista: MutableList<DataModel> = ArrayList()
 
 
     // This property is only valid between onCreateView and
@@ -29,11 +27,18 @@ class GalleryFragment : Fragment() {
     private val binding get() = _binding!!
 
 
+    fun cargarLista(){
+        lista.add(DataModel("La Mezzetta", "Resto", "Av. 123", R.drawable.ic_launcher_foreground))
+        lista.add(DataModel("Mi casa", "Sitio Historico", "asd", R.drawable.ic_launcher_foreground))
+        lista.add(DataModel("Abcd", "Algo", "fiumba", R.drawable.ic_launcher_foreground))
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         galleryViewModel =
             ViewModelProvider(this).get(GalleryViewModel::class.java)
 
@@ -45,7 +50,9 @@ class GalleryFragment : Fragment() {
 //            textView.text = it
 //        })
 
-        val adapter = RVListaAdapter(titulos, tipo, direccion, img)
+        cargarLista()
+
+        val adapter = RVListaAdapter(lista)
         val recyclerView: RecyclerView = root.findViewById(R.id.rvLista)
 
         recyclerView.adapter = adapter
