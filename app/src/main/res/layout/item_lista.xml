@@ -24,18 +24,16 @@
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:contentDescription="TODO"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/backgrounds/scenic"
-            />
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
             android:id="@+id/tvTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="La Mezzetta"
             android:fontFamily="@font/milmedium"
+            android:text="La Mezzetta"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/tvTipo"
@@ -47,11 +45,11 @@
             android:id="@+id/tvDireccion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Av. Alvarez Thomas 1234"
             android:fontFamily="@font/millight"
+            android:text="Av. Alvarez Thomas 1234"
             android:textColor="@color/black"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/imgItem"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgItem"
             app:layout_constraintTop_toBottomOf="@+id/tvTipo" />
@@ -68,6 +66,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imgItem"
             app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
+
+        <TextView
+            android:id="@+id/tvDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque pulvinar erat, eget maximus magna convallis quis. Phasellus sodales egestas neque ut pulvinar. Suspendisse ornare mauris quis nunc molestie gravida. Vestibulum at blandit quam. Fusce at ante ornare, pretium mauris a, gravida felis. "
+            android:fontFamily="@font/millight"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgItem" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

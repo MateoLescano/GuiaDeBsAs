@@ -28,9 +28,9 @@ class GalleryFragment : Fragment() {
 
 
     fun cargarLista(){
-        lista.add(DataModel("La Mezzetta", "Resto", "Av. 123", R.drawable.ic_launcher_foreground))
-        lista.add(DataModel("Mi casa", "Sitio Historico", "asd", R.drawable.ic_launcher_foreground))
-        lista.add(DataModel("Abcd", "Algo", "fiumba", R.drawable.ic_launcher_foreground))
+        lista.add(DataModel("La Mezzetta", "Resto", "Av. 123", R.drawable.ic_launcher_foreground, "En nuestra humilde opinion esta es la mejor pizzería de la ciudad de Buenos Aires"))
+        lista.add(DataModel("Mi casa", "Sitio Historico", "asd", R.drawable.ic_launcher_foreground, "QSY aca vivi yo"))
+        lista.add(DataModel("Abcd", "Algo", "fiumba", R.drawable.ic_launcher_foreground, "ASDASDADS"))
     }
 
 

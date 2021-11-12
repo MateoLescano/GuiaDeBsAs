@@ -22,6 +22,8 @@ class RVListaAdapter(val locaciones: List<DataModel>): RecyclerView.Adapter<RVLi
 
         var direccion: TextView = itemView.findViewById(R.id.tvDireccion)
 
+        var descripcion: TextView = itemView.findViewById(R.id.tvDescripcion)
+
 //        init {
 //
 //        }
@@ -43,6 +45,7 @@ class RVListaAdapter(val locaciones: List<DataModel>): RecyclerView.Adapter<RVLi
         holder.tipo.text = data.tipo
         holder.direccion.text = data.direccionLoc
         holder.itemImage.setImageResource(data.imgLoc)
+        holder.descripcion.text = data.descripcion
 
 //        when (TipoLoc[position]){
 //            "Trimarchi" -> holder.itemView.setBackgroundColor(0xFF3F51B5.toInt())
