@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -25,6 +27,49 @@ class GalleryFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        galleryViewModel =
+            ViewModelProvider(this).get(GalleryViewModel::class.java)
+
+        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+//        val textView: TextView = binding.textGallery
+//        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
+//            textView.text = it
+//        })
+
+        //spinner
+
+        val spinner: Spinner = binding.spinnerC
+        val values: Array<String> = arrayOf("Restaurante", "Sitio historico")
+
+        val adapterS = ArrayAdapter(requireContext(), R.layout.spinner_layout,values)
+        adapterS.setDropDownViewResource(R.layout.spinner_dropdown)
+        spinner.adapter = adapterS
+//        spinner.onItemSelectedListener = this
+
+        cargarLista()
+
+        val adapter = RVListaAdapter(lista)
+        val recyclerView: RecyclerView = root.findViewById(R.id.rvLista)
+
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        return root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 
     fun cargarLista(){
@@ -70,38 +115,5 @@ class GalleryFragment : Fragment() {
 //        lista.add(DataModel("", "", "", R.drawable.ic_launcher_foreground, ""))
 //        lista.add(DataModel("", "", "", R.drawable.ic_launcher_foreground, ""))
 //        lista.add(DataModel("", "", "", R.drawable.ic_launcher_foreground, ""))
-    }
-
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        galleryViewModel =
-            ViewModelProvider(this).get(GalleryViewModel::class.java)
-
-        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-//        val textView: TextView = binding.textGallery
-//        galleryViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
-
-        cargarLista()
-
-        val adapter = RVListaAdapter(lista)
-        val recyclerView: RecyclerView = root.findViewById(R.id.rvLista)
-
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        return root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
